@@ -9,8 +9,8 @@
     <Grid>
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
 
-        <ScrollViewer>
-            
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        
         </ScrollViewer>
     </Grid>
 </Window>
