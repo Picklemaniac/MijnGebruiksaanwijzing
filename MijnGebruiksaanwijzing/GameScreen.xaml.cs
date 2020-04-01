@@ -19,18 +19,10 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class GameScreen : Window
     {
-        List<string> List = new List<string>(); 
 
         public GameScreen()
         {
             InitializeComponent();
-
-            for (int i = 0; i < 100; i++)
-            {
-                List.Add(i.ToString());
-            }
-
-            Test.ItemsSource = List;
         }
     }
 }
