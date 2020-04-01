@@ -1,0 +1,22 @@
+﻿<Window x:Class="MijnGebruiksaanwijzing.StartScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MijnGebruiksaanwijzing"
+        mc:Ignorable="d"
+        Title="StartScreen" Height="450" Width="800">
+    <Grid>
+        <Image Source="IMG/summa_logo.jpg" Width="175" Height="150" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40">
+            <TextBlock x:Name="txt_mentorEmail" FontSize="20">Email Mentor: PS847354@Summacollege.nl</TextBlock>
+            <TextBlock x:Name="txt_eigenEmail" Margin="0,20,0,0" FontSize="20">Email Zelf: PS197800@Summacollege.nl</TextBlock>
+        </StackPanel>
+        <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="954,40,0,0" FontSize="30" Width="200" Height="80">Terug</Button>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Background="Purple" Foreground="White" Width="200" Height="60" Margin="0,0,300,0" FontSize="20">Studenten Spel</Button>
+            <Button Background="Purple" Foreground="White" Width="200" FontSize="20">Stage Spel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

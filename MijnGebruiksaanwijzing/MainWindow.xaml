@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+    <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
+    <StackPanel Width="450" Margin="172,35,172,35">
+
+        <TextBlock HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Eigen Email:</TextBlock>
+        <StackPanel Orientation="Horizontal" Width="450" Height="50">
+            <Separator Width="80" Background="{x:Null}"></Separator>
+            <TextBox x:Name="txt_eigenemail" Width="270"  Height="30" FontSize="20"></TextBox>
+            <Separator Width="20" Background="{x:Null}"></Separator>
+            <TextBlock Width="80" Height="30" FontSize="20" VerticalAlignment="Center">*Vereist</TextBlock>
+        </StackPanel>
+
+        <Separator Height="50" Background="{x:Null}"></Separator>
+
+        <TextBlock HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Mentor Email:</TextBlock>
+
+        <StackPanel Orientation="Horizontal" Width="450" Height="50">
+            <Separator Width="80" Background="{x:Null}"></Separator>
+            <TextBox x:Name="txt_mentoremail" Width="270"  Height="30" FontSize="20"></TextBox>
+            <Separator Width="20" Background="{x:Null}"></Separator>
+            <TextBlock Width="80" Height="30" FontSize="20" VerticalAlignment="Center">*Vereist</TextBlock>
+        </StackPanel>
+
+        <Separator Height="50" Background="{x:Null}"></Separator>
+
+        <Button x:Name="btn_doorgaan" Background="Purple" Foreground="White" Height="70" Width="200" FontSize="20">Doorgaan</Button>
+    </StackPanel>
     </Grid>
 </Window>
