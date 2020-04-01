@@ -196,7 +196,7 @@
                     <GradientStop Color="#FFA3FFFF" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBox FontSize="15" Background="{x:Null}">Opmerking</TextBox>
+            <TextBox TextWrapping="WrapWithOverflow" FontSize="15" Background="{x:Null}">Opmerking</TextBox>
         </Border>
     </Grid>
 </Window>
