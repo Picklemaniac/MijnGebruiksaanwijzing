@@ -23,5 +23,12 @@ namespace MijnGebruiksaanwijzing
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var newScreen = new GameScreen();
+            newScreen.Show();
+            this.Close();
+        }
     }
 }

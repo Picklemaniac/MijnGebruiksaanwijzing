@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MijnGebruiksaanwijzing"
         mc:Ignorable="d"
-        Title="GameScreen" Height="450" Width="800">
+        Title="GameScreen" Height="550" Width="1000">
     <Grid>
-        
+        <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
+
+        <ListView x:Name="Test" Margin="290,76,267.6,66.8"></ListView>
     </Grid>
 </Window>
