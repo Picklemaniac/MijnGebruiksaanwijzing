@@ -9,8 +9,8 @@
     <Grid>
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="150" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40">
-            <TextBlock x:Name="txt_mentorEmail" FontSize="20">Email Mentor: PS847354@Summacollege.nl</TextBlock>
-            <TextBlock x:Name="txt_eigenEmail" Margin="0,20,0,0" FontSize="20">Email Zelf: PS197800@Summacollege.nl</TextBlock>
+            <TextBlock x:Name="txt_eigenEmail" FontSize="20">Email Zelf: PS847354@Summacollege.nl</TextBlock>
+            <TextBlock x:Name="txt_mentorEmail" Margin="0,20,0,0" FontSize="20">Email Mentor: PS197800@Summacollege.nl</TextBlock>
         </StackPanel>
         <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="954,40,0,0" FontSize="30" Width="200" Height="80">Terug</Button>
 
