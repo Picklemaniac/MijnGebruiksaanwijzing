@@ -27,9 +27,17 @@ namespace MijnGebruiksaanwijzing
 
         private void btn_doorgaan_Click(object sender, RoutedEventArgs e)
         {
-            var newScreen = new StartScreen();
-            newScreen.Show(); 
-            this.Close();
+            if (txt_eigenemail.Text == "" || txt_mentoremail.Text == "")
+            {
+                MessageBox.Show("Voer de email van uzelf en uw mentor in");
+            }
+            else
+            {
+                var newScreen = new StartScreen(txt_mentoremail.Text, txt_eigenemail.Text);
+                newScreen.Show();
+                this.Close();
+            }
+
         }
     }
 }

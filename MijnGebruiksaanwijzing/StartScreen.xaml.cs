@@ -19,9 +19,11 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class StartScreen : Window
     {
-        public StartScreen()
+        public StartScreen(string mentorEmail, string studentEmail)
         {
             InitializeComponent();
+            txt_eigenEmail.Text = studentEmail;
+            txt_mentorEmail.Text = mentorEmail;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
