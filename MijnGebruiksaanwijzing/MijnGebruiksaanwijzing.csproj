@@ -118,5 +118,15 @@
   <ItemGroup>
     <Resource Include="IMG\summa_logo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\school\school_blauw.png" />
+    <Resource Include="IMG\school\school_geel.png" />
+    <Resource Include="IMG\school\school_rood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\stage\stage_blauw.png" />
+    <Resource Include="IMG\stage\stage_geel.png" />
+    <Resource Include="IMG\stage\stage_rood.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
