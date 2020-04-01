@@ -10,12 +10,94 @@
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
         <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40" FontSize="30" Width="200" Height="80">Terug</Button>
 
-        <Image Source="IMG/school/school_rood.png" Width="150" Height="75" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20" Stretch="Fill"/>
+        <Image Source="IMG/school/school_rood.png" Width="150" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="40" Stretch="Fill"/>
 
-        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="258,107,175.6,63.8">
-            <StackPanel>
-                <TextBlock FontSize="300">kaaas</TextBlock>
-            </StackPanel>
+        <ScrollViewer VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20">
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Canvas  Width="150" Height="150">
+                        <Image Source="IMG/school/school_geel.png" Width="150" Height="150" Stretch="Fill"/>
+                        <TextBlock Canvas.Left="10" Canvas.Top="55" Height="85" Width="130" TextAlignment="Center">Ik gebruik een boksbal.</TextBlock>
+                    </Canvas>
+                </ListBoxItem>
+            </ListBox>
         </ScrollViewer>
     </Grid>
 </Window>
