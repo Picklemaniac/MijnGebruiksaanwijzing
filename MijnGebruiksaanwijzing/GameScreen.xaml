@@ -9,8 +9,10 @@
     <Grid>
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
 
-        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
-        
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="258,107,175.6,63.8">
+            <StackPanel>
+                <TextBlock FontSize="300">kaaas</TextBlock>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Window>
