@@ -9,6 +9,8 @@
     <Grid>
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
 
-        <ListView x:Name="Test" Margin="290,76,267.6,66.8"></ListView>
+        <ScrollViewer>
+            
+        </ScrollViewer>
     </Grid>
 </Window>
