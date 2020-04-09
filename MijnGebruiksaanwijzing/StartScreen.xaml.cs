@@ -32,5 +32,12 @@ namespace MijnGebruiksaanwijzing
             newScreen.Show();
             this.Close();
         }
+
+        private void btn_terug_Click(object sender, RoutedEventArgs e)
+        {
+            var newScreen = new MainWindow();
+            newScreen.Show();
+            this.Close();
+        }
     }
 }
