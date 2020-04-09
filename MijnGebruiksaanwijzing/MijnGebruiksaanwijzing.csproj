@@ -128,5 +128,11 @@
     <Resource Include="IMG\stage\stage_geel.png" />
     <Resource Include="IMG\stage\stage_rood.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\school\School_RedCard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\stage\Stage_RedCard.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
