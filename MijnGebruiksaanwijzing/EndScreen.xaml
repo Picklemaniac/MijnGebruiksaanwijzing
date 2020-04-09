@@ -8,7 +8,7 @@
         Title="EndScreen" Height="450" Width="800">
     <Grid>
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="150" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"></Image>
-        <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40" FontSize="30" Width="200" Height="80">Hoofd menu</Button>
+        <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="40" FontSize="30" Width="200" Height="80" Click="btn_terug_Click">Hoofd menu</Button>
         <StackPanel Margin="0,0,0,-100" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button FontSize="20" Margin="0,0,0,10" Height="60" x:Name="btn_stuurmentor" Background="Purple" Foreground="White">Doorsturen naar mentor</Button>
             <Button FontSize="20" Margin="0,0,0,10" Height="60" x:Name="btn_export" Background="Purple" Foreground="White">Exporteren</Button>

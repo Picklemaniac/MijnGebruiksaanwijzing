@@ -23,5 +23,12 @@ namespace MijnGebruiksaanwijzing
         {
             InitializeComponent();
         }
+
+        private void btn_terug_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow hoofd = new MainWindow();
+            hoofd.Show();
+            this.Close();
+        }
     }
 }
