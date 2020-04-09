@@ -22,8 +22,8 @@ namespace MijnGebruiksaanwijzing
         public StartScreen(string mentorEmail, string studentEmail)
         {
             InitializeComponent();
-            txt_eigenEmail.Text = studentEmail;
-            txt_mentorEmail.Text = mentorEmail;
+            txt_eigenEmail.Text = "Eigen email: " + studentEmail;
+            txt_mentorEmail.Text = "Mentor email: " + mentorEmail;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
