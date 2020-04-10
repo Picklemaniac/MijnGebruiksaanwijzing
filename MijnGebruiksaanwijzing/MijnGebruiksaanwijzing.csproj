@@ -134,5 +134,11 @@
   <ItemGroup>
     <Resource Include="IMG\stage\Stage_RedCard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG\school\School_BlueCard.png" />
+    <Resource Include="IMG\school\School_YellowCard.png" />
+    <Resource Include="IMG\stage\Stage_BlueCard.png" />
+    <Resource Include="IMG\stage\Stage_YellowCard.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
