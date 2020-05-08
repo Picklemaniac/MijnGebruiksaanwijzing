@@ -15,26 +15,13 @@ using System.Windows.Shapes;
 namespace MijnGebruiksaanwijzing
 {
     /// <summary>
-    /// Interaction logic for GameScreen.xaml
+    /// Interaction logic for GameScreenRood.xaml
     /// </summary>
-    public partial class GameScreen : Window
+    public partial class GameScreenRood : Window
     {
-
-        public GameScreen()
+        public GameScreenRood()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var newScreen = new EndScreen();
-            newScreen.Show();
-            this.Close();
-        }
-
-        private void btn_terug_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
