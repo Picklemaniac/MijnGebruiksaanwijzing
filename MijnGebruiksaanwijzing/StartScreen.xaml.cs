@@ -26,9 +26,9 @@ namespace MijnGebruiksaanwijzing
             txt_mentorEmail.Text = "Mentor email: " + mentorEmail;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Choose_Gamemode(object sender, RoutedEventArgs e)
         {
-            var newScreen = new GameScreen();
+            var newScreen = new GameScreen(((Button)sender).Tag.ToString(), txt_mentorEmail.Text, txt_eigenEmail.Text);
             newScreen.Show();
             this.Close();
         }

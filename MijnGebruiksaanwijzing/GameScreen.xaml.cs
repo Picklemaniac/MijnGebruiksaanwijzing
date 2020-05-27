@@ -20,7 +20,7 @@ namespace MijnGebruiksaanwijzing
     public partial class GameScreen : Window
     {
 
-        public GameScreen()
+        public GameScreen(string categorie, string mentorEmail, string studentEmail)
         {
             InitializeComponent();
         }
