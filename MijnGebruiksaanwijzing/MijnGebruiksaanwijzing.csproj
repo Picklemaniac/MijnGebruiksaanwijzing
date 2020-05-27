@@ -184,16 +184,16 @@
     <Resource Include="IMG\summa_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMG\school\School_RedCard.png" />
+    <Resource Include="IMG\school\School_Rood.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMG\stage\Stage_RedCard.png" />
+    <Resource Include="IMG\stage\Stage_Rood.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMG\school\School_BlueCard.png" />
-    <Resource Include="IMG\school\School_YellowCard.png" />
-    <Resource Include="IMG\stage\Stage_BlueCard.png" />
-    <Resource Include="IMG\stage\Stage_YellowCard.png" />
+    <Resource Include="IMG\school\School_Blauw.png" />
+    <Resource Include="IMG\school\School_Geel.png" />
+    <Resource Include="IMG\stage\Stage_Blauw.png" />
+    <Resource Include="IMG\stage\Stage_Geel.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

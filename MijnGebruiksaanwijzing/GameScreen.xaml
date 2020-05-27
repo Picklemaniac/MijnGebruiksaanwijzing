@@ -11,13 +11,13 @@
         <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" FontSize="30" Width="200" Height="80" Click="btn_terug_Click">Terug</Button>
 
         <Canvas  Width="150" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20" >
-            <Image Source="IMG/school/School_RedCard.png" Width="150" Height="150" Stretch="Fill"/>
+            <Image Source="IMG/school/School_Rood.png" Width="150" Height="150" Stretch="Fill"/>
             <TextBlock Canvas.Left="20" Canvas.Top="25" Height="110" Width="110" TextAlignment="Center" TextWrapping="Wrap">Ik word snel boos.</TextBlock>
         </Canvas>
         
 
         <ScrollViewer Height="175" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20,175,20.4,271">
-            <ListBox x:Name="Yellow_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Geel_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
@@ -27,18 +27,12 @@
         </ScrollViewer>
 
         <ScrollViewer Height="175" Width="700" VerticalAlignment="Bottom" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20">
-            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Blauw_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <ListBoxItem>
-                    <Canvas  Width="150" Height="150">
-                        <Image Source="IMG/school/School_BlueCard.png" Width="150" Height="150" Stretch="Fill"/>
-                        <TextBlock Canvas.Left="20" Canvas.Top="25" Height="110" Width="110" TextAlignment="Center" TextWrapping="Wrap">Ik gebruik een boksbal.</TextBlock>
-                    </Canvas>
-                </ListBoxItem>
             </ListBox>
         </ScrollViewer>
 
