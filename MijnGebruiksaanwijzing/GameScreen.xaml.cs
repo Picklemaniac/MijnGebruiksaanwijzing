@@ -57,6 +57,7 @@ namespace MijnGebruiksaanwijzing
             textBlock.TextAlignment = TextAlignment.Center;
             textBlock.TextWrapping = TextWrapping.Wrap;
             textBlock.Text = "Dit is een test";
+            textBlock.Margin = new Thickness(20, 25, 0, 0); 
             imageCanvas.Children.Add(textBlock);
 
             List<Canvas> yellowCards = new List<Canvas>();
