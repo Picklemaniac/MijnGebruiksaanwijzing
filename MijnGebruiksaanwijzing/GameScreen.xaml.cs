@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MijnGebruiksaanwijzing.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace MijnGebruiksaanwijzing
         public GameScreen(string categorie, string mentorEmail, string studentEmail)
         {
             InitializeComponent();
+            DBConnection conn = new DBConnection();
+
+            conn.GetCards(categorie, "geel");
+            conn.GetCards(categorie, "blauw");
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
