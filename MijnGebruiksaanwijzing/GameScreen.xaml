@@ -17,18 +17,12 @@
         
 
         <ScrollViewer Height="175" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20,175,20.4,271">
-            <ListBox SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Yellow_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <ListBoxItem>
-                    <Canvas  Width="150" Height="150">
-                        <Image Source="IMG/school/School_YellowCard.png" Width="150" Height="150" Stretch="Fill"/>
-                        <TextBlock Canvas.Left="20" Canvas.Top="25" Height="110" Width="110" TextAlignment="Center" TextWrapping="Wrap">Ik gebruik een boksbal.</TextBlock>
-                    </Canvas>
-                </ListBoxItem>
             </ListBox>
         </ScrollViewer>
 

@@ -34,7 +34,29 @@ namespace MijnGebruiksaanwijzing
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
         {
+            Canvas imageCanvas = new Canvas();
+            imageCanvas.Width = 150;
+            imageCanvas.Height = 150;
 
+            Image imageYellow = new Image();
+            imageYellow.Source = new BitmapImage(new Uri("IMG/school/School_YellowCard.png", UriKind.RelativeOrAbsolute));
+            imageYellow.Width = 150;
+            imageYellow.Height = 150;
+            imageYellow.Stretch = Stretch.Fill;
+            imageCanvas.Children.Add(imageYellow);
+
+            TextBlock textBlock = new TextBlock();
+            textBlock.Height = 110;
+            textBlock.Width = 110;
+            textBlock.TextAlignment = TextAlignment.Center;
+            textBlock.TextWrapping = TextWrapping.Wrap;
+            textBlock.Text = "Dit is een test";
+            imageCanvas.Children.Add(textBlock);
+
+            List<Canvas> yellowCards = new List<Canvas>();
+
+            yellowCards.Add(imageCanvas);
+            Yellow_Cards.ItemsSource = yellowCards;
         }
     }
 }
