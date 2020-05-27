@@ -1,6 +1,7 @@
 ﻿using MijnGebruiksaanwijzing.Database;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,33 +39,32 @@ namespace MijnGebruiksaanwijzing
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
         {
-            Canvas imageCanvas = new Canvas();
-            imageCanvas.Width = 150;
-            imageCanvas.Height = 150;
-
-            Image imageYellow = new Image();
-            imageYellow.Source = new BitmapImage(new Uri("IMG/school/School_YellowCard.png", UriKind.RelativeOrAbsolute));
-            imageYellow.Width = 150;
-            imageYellow.Height = 150;
-            imageYellow.Stretch = Stretch.Fill;
-            imageCanvas.Children.Add(imageYellow);
-
-            TextBlock textBlock = new TextBlock();
-            textBlock.Height = 110;
-            textBlock.Width = 110;
-            textBlock.TextAlignment = TextAlignment.Center;
-            textBlock.TextWrapping = TextWrapping.Wrap;
-            textBlock.Text = "Dit is een test";
-            textBlock.Margin = new Thickness(20, 25, 0, 0); 
-            imageCanvas.Children.Add(textBlock);
-
             List<Canvas> yellowCards = new List<Canvas>();
 
-            yellowCards.Add(imageCanvas);
+            foreach (DataRowView row in conn.GetCards(Categorie, "geel")) {
+                Canvas imageCanvas = new Canvas();
+                imageCanvas.Width = 150;
+                imageCanvas.Height = 150;
 
-            Yellow_Cards.SelectedValuePath = "text";
-            Yellow_Cards.DisplayMemberPath = "text";
-            Yellow_Cards.ItemsSource = conn.GetCards(Categorie, "geel");
+                Image imageYellow = new Image();
+                imageYellow.Source = new BitmapImage(new Uri("IMG/school/School_YellowCard.png", UriKind.RelativeOrAbsolute));
+                imageYellow.Width = 150;
+                imageYellow.Height = 150;
+                imageYellow.Stretch = Stretch.Fill;
+                imageCanvas.Children.Add(imageYellow);
+
+                TextBlock textBlock = new TextBlock();
+                textBlock.Height = 110;
+                textBlock.Width = 110;
+                textBlock.TextAlignment = TextAlignment.Center;
+                textBlock.TextWrapping = TextWrapping.Wrap;
+                textBlock.Text = row[3].ToString();
+                textBlock.Margin = new Thickness(20, 25, 0, 0);
+                imageCanvas.Children.Add(textBlock);
+
+                yellowCards.Add(imageCanvas);
+            }
+            Yellow_Cards.ItemsSource = yellowCards;
         }
     }
 }
