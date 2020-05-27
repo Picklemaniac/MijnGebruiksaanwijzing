@@ -20,15 +20,13 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class GameScreen : Window
     {
+        DBConnection conn = new DBConnection();
+        string Categorie;
 
         public GameScreen(string categorie, string mentorEmail, string studentEmail)
         {
             InitializeComponent();
-            DBConnection conn = new DBConnection();
-
-            conn.GetCards(categorie, "geel");
-            conn.GetCards(categorie, "blauw");
-
+            Categorie = categorie;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -63,7 +61,10 @@ namespace MijnGebruiksaanwijzing
             List<Canvas> yellowCards = new List<Canvas>();
 
             yellowCards.Add(imageCanvas);
-            Yellow_Cards.ItemsSource = yellowCards;
+
+            Yellow_Cards.SelectedValuePath = "text";
+            Yellow_Cards.DisplayMemberPath = "text";
+            Yellow_Cards.ItemsSource = conn.GetCards(Categorie, "geel");
         }
     }
 }
