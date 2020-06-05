@@ -22,7 +22,7 @@
         </ScrollViewer>
 
         <ScrollViewer MaxWidth="900" Height="175" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0, 180, 0, 200">
-            <ListBox x:Name="Geel_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Geel_Cards" SelectionMode="Multiple" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
@@ -32,7 +32,7 @@
         </ScrollViewer>
 
         <ScrollViewer Height="175" MaxWidth="700" VerticalAlignment="Bottom" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20">
-            <ListBox x:Name="Blauw_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Blauw_Cards" SelectionMode="Multiple" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />
