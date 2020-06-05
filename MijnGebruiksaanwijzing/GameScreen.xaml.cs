@@ -169,6 +169,9 @@ namespace MijnGebruiksaanwijzing
             Rood_Selected = "";
             Geel_Selected.Clear();
             Blauw_Selected.Clear();
+            Rood_Cards.SelectedItem = null;
+            Geel_Cards.SelectedItem = null;
+            Blauw_Cards.SelectedItem = null;
         }
 
     }
