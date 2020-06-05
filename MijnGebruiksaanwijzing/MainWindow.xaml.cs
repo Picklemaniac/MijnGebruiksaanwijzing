@@ -39,5 +39,12 @@ namespace MijnGebruiksaanwijzing
             }
 
         }
+
+        private void TEST_Click(object sender, RoutedEventArgs e)
+        {
+            var newScreen = new StartScreen(txt_mentoremail.Text, txt_eigenemail.Text);
+            newScreen.Show();
+            this.Close();
+        }
     }
 }

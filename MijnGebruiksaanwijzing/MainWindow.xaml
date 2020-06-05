@@ -30,8 +30,10 @@
         </StackPanel>
 
         <Separator Height="50" Background="{x:Null}"></Separator>
-
-        <Button x:Name="btn_doorgaan" Background="Purple" Foreground="White" Height="70" Width="200" FontSize="20" Click="btn_doorgaan_Click">Doorgaan</Button>
-    </StackPanel>
+        <Canvas Height="70">
+            <Button x:Name="btn_doorgaan" Background="Purple" Foreground="White" Height="70" Width="200" FontSize="20" Click="btn_doorgaan_Click">Doorgaan</Button>
+            <Button x:Name="TEST" Background="Purple" Foreground="White" Height="70" Width="200" FontSize="20" Margin="250,0" Click="TEST_Click">TEST</Button>
+        </Canvas>
+        </StackPanel>
     </Grid>
 </Window>
