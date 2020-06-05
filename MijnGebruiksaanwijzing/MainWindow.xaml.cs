@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,12 @@ namespace MijnGebruiksaanwijzing
         {
             InitializeComponent();
         }
+        
+        public bool IsValidEmailAddress(string s)
+        {
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            return regex.IsMatch(s);
+        }
 
         private void btn_doorgaan_Click(object sender, RoutedEventArgs e)
         {
@@ -33,9 +40,16 @@ namespace MijnGebruiksaanwijzing
             }
             else
             {
-                var newScreen = new StartScreen(txt_mentoremail.Text, txt_eigenemail.Text);
-                newScreen.Show();
-                this.Close();
+                if (IsValidEmailAddress(txt_mentoremail.Text) && IsValidEmailAddress(txt_eigenemail.Text))
+                {
+                    var newScreen = new StartScreen(txt_mentoremail.Text, txt_eigenemail.Text);
+                    newScreen.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Dit zijn geen geldige e-mail adressen,");
+                }
             }
 
         }
