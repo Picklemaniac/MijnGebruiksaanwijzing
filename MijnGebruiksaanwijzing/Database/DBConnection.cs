@@ -17,14 +17,13 @@ namespace MijnGebruiksaanwijzing.Database
             _conn = new MySqlConnection(connectie);
         }
 
-        public DataView GetCards(string categorie, string kleur)
+        public DataView GetCards(string categorie)
         {
             _conn.Open();
 
             MySqlCommand command = _conn.CreateCommand();
 
-            command.CommandText = "SELECT * FROM cards WHERE Categorie = @categorie AND Kleur = @kleur;";
-            command.Parameters.AddWithValue("@kleur", kleur);
+            command.CommandText = "SELECT * FROM cards WHERE Categorie = @categorie";
             command.Parameters.AddWithValue("@categorie", categorie);
 
             MySqlDataReader reader = command.ExecuteReader();

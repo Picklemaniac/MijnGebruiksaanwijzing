@@ -28,9 +28,7 @@ namespace MijnGebruiksaanwijzing
         {
             InitializeComponent();
             Categorie = categorie;
-            ShowCards("Geel");
-            ShowCards("Blauw");
-
+            ShowCards();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -45,18 +43,20 @@ namespace MijnGebruiksaanwijzing
 
         }
 
-        private void ShowCards(string colour)
+        private void ShowCards()
         {
-            List<Canvas> CardList = new List<Canvas>();
+            List<Canvas> CardListRed = new List<Canvas>();
+            List<Canvas> CardListYellow = new List<Canvas>();
+            List<Canvas> CardListBlue = new List<Canvas>();
 
-            foreach (DataRowView row in conn.GetCards(Categorie, colour))
+            foreach (DataRowView row in conn.GetCards(Categorie))
             {
                 Canvas imageCanvas = new Canvas();
                 imageCanvas.Width = 150;
                 imageCanvas.Height = 150;
 
                 Image Image = new Image();
-                Image.Source = new BitmapImage(new Uri("IMG/school/School_" + colour + ".png", UriKind.RelativeOrAbsolute));
+                Image.Source = new BitmapImage(new Uri("IMG/school/School_" + row[2].ToString() + ".png", UriKind.RelativeOrAbsolute));
                 Image.Width = 150;
                 Image.Height = 150;
                 Image.Stretch = Stretch.Fill;
@@ -71,17 +71,24 @@ namespace MijnGebruiksaanwijzing
                 textBlock.Margin = new Thickness(20, 25, 0, 0);
                 imageCanvas.Children.Add(textBlock);
 
-                CardList.Add(imageCanvas);
+                if (row[2].ToString() == "rood")
+                {
+                    CardListRed.Add(imageCanvas);
+                }
+                else if (row[2].ToString() == "geel")
+                {
+                    CardListYellow.Add(imageCanvas);
+                }
+                else if (row[2].ToString() == "blauw")
+                {
+                    CardListBlue.Add(imageCanvas);
+                }
+
             }
 
-            if (colour == "Geel")
-            {
-                Geel_Cards.ItemsSource = CardList;
-            }
-            else if (colour == "Blauw")
-            {
-                Blauw_Cards.ItemsSource = CardList;
-            }
+            Rood_Cards.ItemsSource = CardListRed;
+            Geel_Cards.ItemsSource = CardListYellow;
+            Blauw_Cards.ItemsSource = CardListBlue;
         }
     }
 }

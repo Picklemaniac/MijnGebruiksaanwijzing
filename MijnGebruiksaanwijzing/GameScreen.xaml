@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MijnGebruiksaanwijzing"
         mc:Ignorable="d"
-        Title="GameScreen" Height="650" Width="1000">
+        Title="GameScreen" Height="700" Width="1000">
     <Grid>
         <Image Source="IMG/summa_logo.jpg" Width="175" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40"></Image>
         <Button x:Name="btn_terug" Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" FontSize="30" Width="200" Height="80" Click="btn_terug_Click">Terug</Button>
 
-        <Canvas  Width="150" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20" >
-            <Image Source="IMG/school/School_Rood.png" Width="150" Height="150" Stretch="Fill"/>
-            <TextBlock Canvas.Left="20" Canvas.Top="25" Height="110" Width="110" TextAlignment="Center" TextWrapping="Wrap">Ik word snel boos.</TextBlock>
-        </Canvas>
-        
 
-        <ScrollViewer Height="175" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20,175,20.4,271">
+        <ScrollViewer MaxWidth="500" Height="175" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Rood_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </ScrollViewer>
+
+        <ScrollViewer MaxWidth="900" Height="175" VerticalAlignment="Center" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0, 180, 0, 200">
             <ListBox x:Name="Geel_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -26,7 +31,7 @@
             </ListBox>
         </ScrollViewer>
 
-        <ScrollViewer Height="175" Width="700" VerticalAlignment="Bottom" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20">
+        <ScrollViewer Height="175" MaxWidth="700" VerticalAlignment="Bottom" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="20">
             <ListBox x:Name="Blauw_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
