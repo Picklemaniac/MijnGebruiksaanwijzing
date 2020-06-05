@@ -36,21 +36,28 @@ namespace MijnGebruiksaanwijzing
             ShowCards();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Volgende_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult r = MessageBox.Show("Wilt u meer kaarten selecteren?", "Nog een keer?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question);
-
-            if (r == MessageBoxResult.Yes)
+            if (Rood_Cards.SelectedItems.Count == 0 || Geel_Cards.SelectedItems.Count == 0 || Blauw_Cards.SelectedItems.Count == 0)
             {
-                GetSelected();
+                MessageBox.Show("U heeft niet alles gekozen.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
-                var newScreen = new EndScreen();
-                newScreen.Show();
-                this.Close();
+                MessageBoxResult r = MessageBox.Show("Wilt u meer kaarten selecteren?", "Nog een keer?",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+                if (r == MessageBoxResult.Yes)
+                {
+                    GetSelected();
+                }
+                else
+                {
+                    var newScreen = new EndScreen();
+                    newScreen.Show();
+                    this.Close();
+                }
             }
         }
 

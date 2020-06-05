@@ -41,7 +41,7 @@
             </ListBox>
         </ScrollViewer>
 
-        <Button Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,19.6,150" FontSize="30" Width="200" Height="80" Click="Button_Click">Volgende</Button>
+        <Button x:Name="Volgende" Background="Purple" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,19.6,150" FontSize="30" Width="200" Height="80" Click="Volgende_Click">Volgende</Button>
         <Border BorderBrush="#FF2981FB" CornerRadius="2" BorderThickness="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Width="200" Height="100">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
