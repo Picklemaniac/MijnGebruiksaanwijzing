@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Game>
+  <Cards>
+    <RedCard></RedCard>
+    <YellowCard></YellowCard>
+    <BlueCard></BlueCard>
+  </Cards>
+</Game>

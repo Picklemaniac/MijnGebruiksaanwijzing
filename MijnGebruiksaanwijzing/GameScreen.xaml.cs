@@ -33,9 +33,21 @@ namespace MijnGebruiksaanwijzing
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var newScreen = new EndScreen();
-            newScreen.Show();
-            this.Close();
+            MessageBoxResult r = MessageBox.Show("Wilt u meer kaarten selecteren?",
+               "Nog een keer?",
+               MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
+
+            if (r == MessageBoxResult.Yes)
+            {
+
+            }
+            else
+            {
+                var newScreen = new EndScreen();
+                newScreen.Show();
+                this.Close();
+            }
         }
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
