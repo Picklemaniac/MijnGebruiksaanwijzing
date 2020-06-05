@@ -22,6 +22,11 @@ namespace MijnGebruiksaanwijzing
     public partial class GameScreen : Window
     {
         DBConnection conn = new DBConnection();
+
+        string Rood_Selected = "";
+        List<string> Geel_Selected = new List<string>();
+        List<string> Blauw_Selected = new List<string>();
+
         string Categorie;
 
         public GameScreen(string categorie, string mentorEmail, string studentEmail)
@@ -33,14 +38,13 @@ namespace MijnGebruiksaanwijzing
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult r = MessageBox.Show("Wilt u meer kaarten selecteren?",
-               "Nog een keer?",
-               MessageBoxButton.YesNo,
-               MessageBoxImage.Question);
+            MessageBoxResult r = MessageBox.Show("Wilt u meer kaarten selecteren?", "Nog een keer?",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
 
             if (r == MessageBoxResult.Yes)
             {
-
+                GetSelected();
             }
             else
             {
@@ -57,9 +61,9 @@ namespace MijnGebruiksaanwijzing
 
         private void ShowCards()
         {
-            List<Canvas> CardListRed = new List<Canvas>();
+            List<Canvas> CardListRed    = new List<Canvas>();
             List<Canvas> CardListYellow = new List<Canvas>();
-            List<Canvas> CardListBlue = new List<Canvas>();
+            List<Canvas> CardListBlue   = new List<Canvas>();
 
             foreach (DataRowView row in conn.GetCards(Categorie))
             {
@@ -101,6 +105,20 @@ namespace MijnGebruiksaanwijzing
             Rood_Cards.ItemsSource = CardListRed;
             Geel_Cards.ItemsSource = CardListYellow;
             Blauw_Cards.ItemsSource = CardListBlue;
+        }
+
+        public void GetSelected()
+        {
+            Rood_Selected = ((TextBlock)((Canvas)Rood_Cards.SelectedItem).Children[1]).Text;
+
+            foreach (Canvas item in Geel_Cards.SelectedItems)
+            {
+                Geel_Selected.Add(((TextBlock)item.Children[1]).Text);
+            }
+            foreach (Canvas item in Blauw_Cards.SelectedItems)
+            {
+                Blauw_Selected.Add(((TextBlock)item.Children[1]).Text);
+            }
         }
     }
 }
