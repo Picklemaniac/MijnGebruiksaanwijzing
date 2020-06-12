@@ -15,6 +15,8 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Xml;
+using System.Net.Mail;
+using Renci.SshNet.Messages;
 
 namespace MijnGebruiksaanwijzing
 {
@@ -23,9 +25,14 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class EndScreen : Window
     {
+        string StudentEmail;
+        string MentorEmail;
+
         public EndScreen(string mEmail, string sEmail)
         {
             InitializeComponent();
+            StudentEmail = sEmail;
+            MentorEmail = mEmail;
         }
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
@@ -138,6 +145,59 @@ namespace MijnGebruiksaanwijzing
                     }
                 }
             }
+        }
+
+        private void SendEmail()
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.mail.com");
+
+                mail.From = new MailAddress("MijnGebruiksAanwijzing@myself.com");
+
+                mail.To.Add(MentorEmail);
+
+                mail.Subject = "Resultaten Onderzoek";
+
+                StringBuilder sbBody = new StringBuilder();
+
+                sbBody.AppendLine("Beste Heer / Mevrouw,");
+
+                sbBody.AppendLine("Hierbij de resultaten van Mijn Gebruiksaanwijzing");
+
+                sbBody.AppendLine("Deze resultaten zijn verzonden door: " + StudentEmail);
+
+                sbBody.AppendLine("Met vriendelijke groet,");
+
+                sbBody.AppendLine("Mijn Gebruiksaanwijzing");
+
+                mail.Body = sbBody.ToString();
+
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MijnUitwerking.pdf");
+                System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(path);
+
+                mail.Attachments.Add(attachment);
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential("MijnGebruiksAanwijzing@myself.com", "Summacollege123");
+
+                SmtpServer.Port = 587;
+
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("De email is verzonden naar uw mentor");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Momenteel kunnen er maar een gelimiteerd aantal emails per 30 minuten verzonden worden. Sorry voor het ongemak.");
+                throw;
+            }
+        }
+
+        private void btn_stuurmentor_Click(object sender, RoutedEventArgs e)
+        {
+            SendEmail();
         }
     }
 }

@@ -44,4 +44,9 @@
     <BlueCard>Psycholoog
 </BlueCard>
   </Cards>
+  <Cards>
+    <RedCard>Ik raak snel het overzicht kwijt</RedCard>
+    <YellowCard>Ik vraag om een rustige studieruimte</YellowCard>
+    <BlueCard>Psycholoog</BlueCard>
+  </Cards>
 </Game>
