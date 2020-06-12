@@ -11,15 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-
 using iTextSharp.text;
-using iTextSharp.text.xml;
 using iTextSharp.text.pdf;
 using System.IO;
-using System.Xml.Linq;
 using System.Xml;
-using System.Diagnostics;
 
 namespace MijnGebruiksaanwijzing
 {
@@ -28,8 +23,6 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class EndScreen : Window
     {
-        string nodeName = "";
-
         public EndScreen()
         {
             InitializeComponent();
