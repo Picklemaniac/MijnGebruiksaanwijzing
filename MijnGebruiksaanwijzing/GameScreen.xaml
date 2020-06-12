@@ -12,7 +12,7 @@
 
 
         <ScrollViewer MaxWidth="500" Height="175" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <ListBox x:Name="Rood_Cards" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="Rood_Cards" ItemsSource="{Binding}" SelectionMode="Extended" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" />

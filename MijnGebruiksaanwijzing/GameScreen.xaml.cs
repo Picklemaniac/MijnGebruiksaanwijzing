@@ -1,4 +1,5 @@
-﻿using Microsoft.SqlServer.Server;
+﻿using iTextSharp.xmp.impl;
+using Microsoft.SqlServer.Server;
 using MijnGebruiksaanwijzing.Database;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,13 @@ namespace MijnGebruiksaanwijzing
     {
         DBConnection conn = new DBConnection();
 
-        string Rood_Selected = "";
+        List<red_Card> Rood_Selected = new List<red_Card>();
         List<string> Geel_Selected = new List<string>();
         List<string> Blauw_Selected = new List<string>();
+
+        List<Canvas> CardListRed    = new List<Canvas>();
+        List<Canvas> CardListYellow = new List<Canvas>();
+        List<Canvas> CardListBlue   = new List<Canvas>();
 
         string Categorie;
         string mEmail;
@@ -80,10 +85,6 @@ namespace MijnGebruiksaanwijzing
 
         private void ShowCards()
         {
-            List<Canvas> CardListRed    = new List<Canvas>();
-            List<Canvas> CardListYellow = new List<Canvas>();
-            List<Canvas> CardListBlue   = new List<Canvas>();
-
             foreach (DataRowView row in conn.GetCards(Categorie))
             {
                 Canvas imageCanvas = new Canvas();
@@ -100,6 +101,7 @@ namespace MijnGebruiksaanwijzing
                 TextBlock textBlock = new TextBlock();
                 textBlock.Height = 110;
                 textBlock.Width = 110;
+                textBlock.Tag = row[0].ToString();
                 textBlock.TextAlignment = TextAlignment.Center;
                 textBlock.TextWrapping = TextWrapping.Wrap;
                 textBlock.Text = row[3].ToString();
@@ -121,14 +123,16 @@ namespace MijnGebruiksaanwijzing
 
             }
 
-            Rood_Cards.ItemsSource = CardListRed;
+            DataContext = CardListRed;
+            //Rood_Cards.ItemsSource = CardListRed;
             Geel_Cards.ItemsSource = CardListYellow;
             Blauw_Cards.ItemsSource = CardListBlue;
         }
 
         public void GetSelected()
         {
-            Rood_Selected = ((TextBlock)((Canvas)Rood_Cards.SelectedItem).Children[1]).Text;
+            TextBlock red_Textblock = ((TextBlock)((Canvas)Rood_Cards.SelectedItem).Children[1]);
+            Rood_Selected.Add(new red_Card { ID = red_Textblock.Tag.ToString(), Text = red_Textblock.Text });
 
             foreach (Canvas item in Geel_Cards.SelectedItems)
             {
@@ -147,7 +151,8 @@ namespace MijnGebruiksaanwijzing
             XmlElement Cards = doc.CreateElement("Cards");
 
             XmlElement RedCard = doc.CreateElement("RedCard");
-            RedCard.InnerText = Rood_Selected;
+            RedCard.SetAttribute("ID", Rood_Selected[0].ID);
+            RedCard.InnerText = Rood_Selected[0].Text;
             Cards.AppendChild(RedCard);
 
             foreach (string GeelCard in Geel_Selected)
@@ -178,14 +183,22 @@ namespace MijnGebruiksaanwijzing
 
         public void EndTurn()
         {
-            Rood_Selected = "";
+            Rood_Selected.Clear();
             Geel_Selected.Clear();
             Blauw_Selected.Clear();
+
+            CardListRed.Remove(((Canvas)Rood_Cards.SelectedItem));
+
             Rood_Cards.SelectedItem = null;
             Geel_Cards.SelectedItem = null;
             Blauw_Cards.SelectedItem = null;
             txt_opmerking.Text = "";
         }
 
+        class red_Card
+        {
+            public string ID { get; set; }
+            public string Text { get; set; }
+        }
     }
 }
