@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using iTextSharp.text;
+using iTextSharp.text.xml;
+using iTextSharp.text.pdf;
+
+
 namespace MijnGebruiksaanwijzing
 {
     /// <summary>
@@ -29,6 +34,11 @@ namespace MijnGebruiksaanwijzing
             MainWindow hoofd = new MainWindow();
             hoofd.Show();
             this.Close();
+        }
+
+        private void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
