@@ -159,6 +159,13 @@ namespace MijnGebruiksaanwijzing
                 Cards.AppendChild(BlueCard);
             }
 
+            if (txt_opmerking.Text != "")
+            {
+                XmlElement Opmerking = doc.CreateElement("Opmerking");
+                Opmerking.InnerText = txt_opmerking.Text;
+                Cards.AppendChild(Opmerking);
+            }
+
             doc.DocumentElement.AppendChild(Cards);
 
             doc.Save(@"..\..\XML\Game.xml");
@@ -172,6 +179,7 @@ namespace MijnGebruiksaanwijzing
             Rood_Cards.SelectedItem = null;
             Geel_Cards.SelectedItem = null;
             Blauw_Cards.SelectedItem = null;
+            txt_opmerking.Text = "";
         }
 
     }
