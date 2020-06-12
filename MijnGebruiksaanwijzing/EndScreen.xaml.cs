@@ -26,8 +26,8 @@ namespace MijnGebruiksaanwijzing
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow hoofd = new MainWindow();
-            hoofd.Show();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             this.Close();
         }
     }
