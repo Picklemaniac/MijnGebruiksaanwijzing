@@ -1,4 +1,5 @@
-﻿using MijnGebruiksaanwijzing.Database;
+﻿using Microsoft.SqlServer.Server;
+using MijnGebruiksaanwijzing.Database;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace MijnGebruiksaanwijzing
 {
@@ -51,9 +53,12 @@ namespace MijnGebruiksaanwijzing
                 if (r == MessageBoxResult.Yes)
                 {
                     GetSelected();
+                    WriteToXML();
+                    EndTurn();
                 }
                 else
                 {
+                    GetSelected();
                     var newScreen = new EndScreen();
                     newScreen.Show();
                     this.Close();
@@ -63,7 +68,9 @@ namespace MijnGebruiksaanwijzing
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
         {
-
+            var HomeScreen = new MainWindow();
+            HomeScreen.Show();
+            this.Close();
         }
 
         private void ShowCards()
@@ -127,5 +134,42 @@ namespace MijnGebruiksaanwijzing
                 Blauw_Selected.Add(((TextBlock)item.Children[1]).Text);
             }
         }
+
+        public void WriteToXML()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"..\..\XML\Game.xml");
+            XmlElement Cards = doc.CreateElement("Cards");
+
+            XmlElement RedCard = doc.CreateElement("RedCard");
+            RedCard.InnerText = Rood_Selected;
+            Cards.AppendChild(RedCard);
+
+            foreach (string GeelCard in Geel_Selected)
+            {
+                XmlElement YellowCard = doc.CreateElement("YellowCard");
+                YellowCard.InnerText = GeelCard;
+                Cards.AppendChild(YellowCard);
+            }
+
+            foreach (string BlauwCard in Blauw_Selected)
+            {
+                XmlElement BlueCard = doc.CreateElement("BlueCard");
+                BlueCard.InnerText = BlauwCard;
+                Cards.AppendChild(BlueCard);
+            }
+
+            doc.DocumentElement.AppendChild(Cards);
+
+            doc.Save(@"..\..\XML\Game.xml");
+        }
+
+        public void EndTurn()
+        {
+            Rood_Selected = "";
+            Geel_Selected.Clear();
+            Blauw_Selected.Clear();
+        }
+
     }
 }

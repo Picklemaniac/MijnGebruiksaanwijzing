@@ -207,6 +207,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="XML\Game.xml" />
   </ItemGroup>
