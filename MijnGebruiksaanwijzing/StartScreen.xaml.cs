@@ -19,16 +19,22 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class StartScreen : Window
     {
+        string mEmail = "";
+        string sEmail = "";
+
         public StartScreen(string mentorEmail, string studentEmail)
         {
             InitializeComponent();
+            sEmail = studentEmail;
+            mEmail = mentorEmail;
+
             txt_eigenEmail.Text = "Eigen email: " + studentEmail;
             txt_mentorEmail.Text = "Mentor email: " + mentorEmail;
         }
 
         private void Choose_Gamemode(object sender, RoutedEventArgs e)
         {
-            var newScreen = new GameScreen(((Button)sender).Tag.ToString(), txt_mentorEmail.Text, txt_eigenEmail.Text);
+            var newScreen = new GameScreen(((Button)sender).Tag.ToString(), mEmail, sEmail);
             newScreen.Show();
             this.Close();
         }

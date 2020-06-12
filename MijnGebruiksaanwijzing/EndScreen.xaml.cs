@@ -27,6 +27,7 @@ namespace MijnGebruiksaanwijzing
     {
         string StudentEmail;
         string MentorEmail;
+        string documentName = "";
 
         public EndScreen(string mEmail, string sEmail)
         {
@@ -55,8 +56,10 @@ namespace MijnGebruiksaanwijzing
             //Sample XML
             var xml = xmldoc;
 
+            documentName = DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss");
+
             //File to write to
-            var testFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MijnUitwerking.pdf");
+            var testFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), documentName + ".pdf");
 
             //Standard PDF creation, nothing special here
             using (var fs = new FileStream(testFile, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -151,42 +154,46 @@ namespace MijnGebruiksaanwijzing
         {
             try
             {
-                MailMessage mail = new MailMessage();
+                if (documentName != "")
+                {
+                    MailMessage mail = new MailMessage();
 
-                SmtpClient SmtpServer = new SmtpClient("smtp.mail.com");
+                    SmtpClient SmtpServer = new SmtpClient("smtp.mail.com");
 
-                mail.From = new MailAddress("MijnGebruiksAanwijzing@myself.com");
+                    mail.From = new MailAddress("MijnGebruiksAanwijzing@myself.com");
 
-                mail.To.Add(MentorEmail);
+                    mail.To.Add(MentorEmail);
+                    mail.CC.Add(StudentEmail);
 
-                mail.Subject = "Resultaten Onderzoek";
+                    mail.Subject = "Resultaten Onderzoek";
 
-                StringBuilder sbBody = new StringBuilder();
+                    StringBuilder sbBody = new StringBuilder();
 
-                sbBody.AppendLine("Beste Heer / Mevrouw,");
+                    sbBody.AppendLine("Beste Heer / Mevrouw,");
+                    sbBody.AppendLine("Hierbij de resultaten van Mijn Gebruiksaanwijzing");
+                    sbBody.AppendLine("Deze resultaten zijn verzonden door: " + StudentEmail);
+                    sbBody.AppendLine("Met vriendelijke groet,");
+                    sbBody.AppendLine("Mijn Gebruiksaanwijzing");
 
-                sbBody.AppendLine("Hierbij de resultaten van Mijn Gebruiksaanwijzing");
+                    mail.Body = sbBody.ToString();
 
-                sbBody.AppendLine("Deze resultaten zijn verzonden door: " + StudentEmail);
+                    string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), documentName + ".pdf");
+                    System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(path);
 
-                sbBody.AppendLine("Met vriendelijke groet,");
+                    mail.Attachments.Add(attachment);
 
-                sbBody.AppendLine("Mijn Gebruiksaanwijzing");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("MijnGebruiksAanwijzing@myself.com", "Summacollege123");
 
-                mail.Body = sbBody.ToString();
-
-                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MijnUitwerking.pdf");
-                System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(path);
-
-                mail.Attachments.Add(attachment);
-
-                SmtpServer.Credentials = new System.Net.NetworkCredential("MijnGebruiksAanwijzing@myself.com", "Summacollege123");
-
-                SmtpServer.Port = 587;
+                    SmtpServer.Port = 587;
 
 
-                SmtpServer.Send(mail);
-                MessageBox.Show("De email is verzonden naar uw mentor");
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("De email is verzonden naar uw mentor");
+                }
+                else
+                {
+                    MessageBox.Show("Gelieve eerst te exporteren voor het verzenden.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }
             catch (Exception)
             {

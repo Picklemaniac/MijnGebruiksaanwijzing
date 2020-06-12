@@ -63,6 +63,7 @@ namespace MijnGebruiksaanwijzing
                 else
                 {
                     GetSelected();
+                    WriteToXML();
                     var newScreen = new EndScreen(mEmail, sEmail);
                     newScreen.Show();
                     this.Close();

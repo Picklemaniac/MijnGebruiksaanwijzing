@@ -7,6 +7,18 @@
 </BlueCard>
   </Cards>
   <Cards>
+    <RedCard>Ik word heel erg snel boos</RedCard>
+    <YellowCard>Ik vraag om een rustige studieruimte.
+</YellowCard>
+    <YellowCard>Ik gebruik een boksbal.
+</YellowCard>
+    <BlueCard>Ikzelf
+</BlueCard>
+    <BlueCard>Psycholoog
+</BlueCard>
+    <Opmerking>ik heb aids</Opmerking>
+  </Cards>
+  <Cards>
     <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
 </RedCard>
     <YellowCard>Ik vraag om een rustige studieruimte.
@@ -15,38 +27,46 @@
 </YellowCard>
     <BlueCard>Psycholoog
 </BlueCard>
+  </Cards>
+  <Cards>
+    <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
+</RedCard>
+    <YellowCard>Ik gebruik een boksbal.
+</YellowCard>
     <BlueCard>Ikzelf
 </BlueCard>
-    <Opmerking>All right, let's drop this tin can</Opmerking>
+  </Cards>
+  <Cards>
+    <RedCard>Ik word heel erg snel boos</RedCard>
+    <YellowCard>Ik vraag om een rustige studieruimte.
+</YellowCard>
+    <BlueCard>Psycholoog
+</BlueCard>
   </Cards>
   <Cards>
     <RedCard>Ik word heel erg snel boos</RedCard>
     <YellowCard>Ik gebruik een boksbal.
 </YellowCard>
-    <BlueCard>Psycholoog
+    <BlueCard>Ikzelf
 </BlueCard>
   </Cards>
   <Cards>
     <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
 </RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
+    <YellowCard>Ik gebruik een boksbal.
 </YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
     <BlueCard>Ikzelf
 </BlueCard>
-    <Opmerking>Er zit geen nut in het leven</Opmerking>
+    <Opmerking>depressie</Opmerking>
   </Cards>
   <Cards>
     <RedCard>Ik word heel erg snel boos</RedCard>
+    <YellowCard>Ik vraag om een rustige studieruimte.
+</YellowCard>
     <YellowCard>Ik gebruik een boksbal.
 </YellowCard>
     <BlueCard>Psycholoog
 </BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik raak snel het overzicht kwijt</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte</YellowCard>
-    <BlueCard>Psycholoog</BlueCard>
+    <Opmerking>kut radio 2</Opmerking>
   </Cards>
 </Game>
