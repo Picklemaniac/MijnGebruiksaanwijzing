@@ -1,35 +1,27 @@
 <Game>
   <Cards>
     <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.</YellowCard>
-    <BlueCard>Ikzelf</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.</RedCard>
-    <YellowCard>Ik gebruik een boksbal.</YellowCard>
-    <BlueCard>Ikzelf</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik gebruik een boksbal.</YellowCard>
-    <BlueCard>Ikzelf</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.</YellowCard>
-    <BlueCard>Psycholoog</BlueCard>
+    <YellowCard>Ik vraag om een rustige studieruimte.
+</YellowCard>
+    <BlueCard>Ikzelf
+</BlueCard>
   </Cards>
   <Cards>
     <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
 </RedCard>
+    <YellowCard>Ik vraag om een rustige studieruimte.
+</YellowCard>
     <YellowCard>Ik gebruik een boksbal.
 </YellowCard>
     <BlueCard>Psycholoog
 </BlueCard>
+    <BlueCard>Ikzelf
+</BlueCard>
+    <Opmerking>All right, let's drop this tin can</Opmerking>
   </Cards>
   <Cards>
     <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
+    <YellowCard>Ik gebruik een boksbal.
 </YellowCard>
     <BlueCard>Psycholoog
 </BlueCard>
@@ -37,67 +29,19 @@
   <Cards>
     <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
 </RedCard>
-    <YellowCard>Ik gebruik een boksbal.
+    <YellowCard>Ik vraag om een rustige studieruimte.
 </YellowCard>
     <BlueCard>Psycholoog
 </BlueCard>
     <BlueCard>Ikzelf
 </BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
-</YellowCard>
-    <YellowCard>Ik gebruik een boksbal.
-</YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
-    <BlueCard>Ikzelf
-</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
-</YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
+    <Opmerking>Er zit geen nut in het leven</Opmerking>
   </Cards>
   <Cards>
     <RedCard>Ik word heel erg snel boos</RedCard>
     <YellowCard>Ik gebruik een boksbal.
 </YellowCard>
     <BlueCard>Psycholoog
-</BlueCard>
-    <BlueCard>Ikzelf
-</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
-</RedCard>
-    <YellowCard>Ik gebruik een boksbal.
-</YellowCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
-</YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik raak snel het overzicht kwijt bij huiswerk.
-</RedCard>
-    <YellowCard>Ik gebruik een boksbal.
-</YellowCard>
-    <BlueCard>Ikzelf
-</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard>Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
-</YellowCard>
-    <YellowCard>Ik gebruik een boksbal.
-</YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
-    <BlueCard>Ikzelf
 </BlueCard>
   </Cards>
 </Game>

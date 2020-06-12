@@ -23,7 +23,7 @@ namespace MijnGebruiksaanwijzing
     /// </summary>
     public partial class EndScreen : Window
     {
-        public EndScreen()
+        public EndScreen(string mEmail, string sEmail)
         {
             InitializeComponent();
         }
@@ -60,17 +60,29 @@ namespace MijnGebruiksaanwijzing
                     {
                         doc.Open();
 
-                        var t = new PdfPTable(3);
+                        var t = new PdfPTable(4);
 
                         //Flag that the first row should be repeated on each page break
                         t.HeaderRows = 1;
 
-                        ;
+                        BaseColor redtxtColor    = new BaseColor(255, 144, 150);
+                        BaseColor yellowtxtColor = new BaseColor(250, 220, 60);
+                        BaseColor bluetxtColor   = new BaseColor(140, 170, 255);
+                        BaseColor opmtxtColor    = new BaseColor(175, 230, 230);
+                        BaseColor normaltxtColor = new BaseColor(0, 0, 0);
 
-                        t.AddCell("Belemmering");
-                        t.AddCell("Oplossing");
-                        t.AddCell("Wie kan mij daarbij helpen?");
-                        t.AddCell("Opmerking");
+                        BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
+
+                        Font redHelvetica    = new Font(bfTimes, 12, Font.BOLD, redtxtColor);
+                        Font yellowHelvetica = new Font(bfTimes, 12, Font.BOLD, yellowtxtColor);
+                        Font blueHelvetica   = new Font(bfTimes, 12, Font.BOLD, bluetxtColor);
+                        Font opmHelvetica    = new Font(bfTimes, 12, Font.BOLD, opmtxtColor);
+                        Font normalHelvetica = new Font(bfTimes, 12, Font.NORMAL, normaltxtColor);
+
+                        t.AddCell(new Phrase("Belemmering", redHelvetica));
+                        t.AddCell(new Phrase("Oplossing", yellowHelvetica));
+                        t.AddCell(new Phrase("Wie kan mij daarbij helpen?", blueHelvetica));
+                        t.AddCell(new Phrase("Opmerking", opmHelvetica));
                         t.CompleteRow();
 
                         //Loop through each CD row (this is so we can call complete later on)
@@ -90,10 +102,30 @@ namespace MijnGebruiksaanwijzing
                                 Cards[node.Name] += node.InnerText + System.Environment.NewLine;
                             }
 
-                            t.AddCell(Cards["RedCard"]);
-                            t.AddCell(Cards["YellowCard"]);
-                            t.AddCell(Cards["BlueCard"]);
-                            t.AddCell(Cards["Opmerking"]);
+                            BaseColor redColor    = new BaseColor(255, 195, 195);
+                            BaseColor yellowColor = new BaseColor(255, 255, 195);
+                            BaseColor blueColor   = new BaseColor(195, 210, 255);
+                            BaseColor opmColor    = new BaseColor(195, 255, 255);
+
+                            PdfPCell redCell    = new PdfPCell();
+                            PdfPCell yellowCell = new PdfPCell();
+                            PdfPCell blueCell   = new PdfPCell();
+                            PdfPCell opmCell    = new PdfPCell();
+
+                            redCell.BackgroundColor    = redColor;
+                            yellowCell.BackgroundColor = yellowColor;
+                            blueCell.BackgroundColor   = blueColor;
+                            opmCell.BackgroundColor    = opmColor;
+
+                            redCell.AddElement(new Phrase(Cards["RedCard"], normalHelvetica));
+                            yellowCell.AddElement(new Phrase(Cards["YellowCard"], normalHelvetica));
+                            blueCell.AddElement(new Phrase(Cards["BlueCard"], normalHelvetica));
+                            opmCell.AddElement(new Phrase(Cards["Opmerking"], normalHelvetica));
+
+                            t.AddCell(redCell);
+                            t.AddCell(yellowCell);
+                            t.AddCell(blueCell);
+                            t.AddCell(opmCell);
 
                             //Just in case any rows have too few cells fill in any blanks
                             t.CompleteRow();

@@ -30,11 +30,15 @@ namespace MijnGebruiksaanwijzing
         List<string> Blauw_Selected = new List<string>();
 
         string Categorie;
+        string mEmail;
+        string sEmail;
 
         public GameScreen(string categorie, string mentorEmail, string studentEmail)
         {
             InitializeComponent();
             Categorie = categorie;
+            mEmail = mentorEmail;
+            sEmail = studentEmail;
             ShowCards();
         }
 
@@ -59,7 +63,7 @@ namespace MijnGebruiksaanwijzing
                 else
                 {
                     GetSelected();
-                    var newScreen = new EndScreen();
+                    var newScreen = new EndScreen(mEmail, sEmail);
                     newScreen.Show();
                     this.Close();
                 }
