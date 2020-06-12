@@ -44,13 +44,12 @@ namespace MijnGebruiksaanwijzing
         {
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(@"..\..\XML\Game.xml");
-            var kanker = xmldoc.SelectSingleNode("Game").SelectNodes("Cards");
 
             //Sample XML
             var xml = xmldoc;
 
             //File to write to
-            var testFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
+            var testFile = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "MijnUitwerking.pdf");
 
             //Standard PDF creation, nothing special here
             using (var fs = new FileStream(testFile, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -66,9 +65,12 @@ namespace MijnGebruiksaanwijzing
                         //Flag that the first row should be repeated on each page break
                         t.HeaderRows = 1;
 
+                        ;
+
                         t.AddCell("Belemmering");
                         t.AddCell("Oplossing");
                         t.AddCell("Wie kan mij daarbij helpen?");
+                        t.AddCell("Opmerking");
                         t.CompleteRow();
 
                         //Loop through each CD row (this is so we can call complete later on)
@@ -78,7 +80,8 @@ namespace MijnGebruiksaanwijzing
                                 {
                                     { "RedCard", "" },
                                     { "YellowCard", "" },
-                                    { "BlueCard", "" }
+                                    { "BlueCard", "" },
+                                    { "Opmerking", "" }
                                 };
 
                             //Loop through each child of the current CD. Limit the number of children to our initial count just in case there are extra nodes.
@@ -90,6 +93,7 @@ namespace MijnGebruiksaanwijzing
                             t.AddCell(Cards["RedCard"]);
                             t.AddCell(Cards["YellowCard"]);
                             t.AddCell(Cards["BlueCard"]);
+                            t.AddCell(Cards["Opmerking"]);
 
                             //Just in case any rows have too few cells fill in any blanks
                             t.CompleteRow();
