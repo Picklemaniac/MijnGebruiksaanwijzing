@@ -49,7 +49,7 @@
                     <GradientStop Color="#662981FB" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBox TextWrapping="WrapWithOverflow" FontSize="15" Background="{x:Null}">Opmerking</TextBox>
+            <TextBox x:Name="txt_opmerking" TextWrapping="WrapWithOverflow" FontSize="15" Background="{x:Null}"></TextBox>
         </Border>
     </Grid>
 </Window>
