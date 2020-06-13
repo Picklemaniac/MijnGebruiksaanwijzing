@@ -12,7 +12,7 @@
         <StackPanel Margin="0,0,0,-100" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button FontSize="20" Margin="0,0,0,10" Height="60" x:Name="btn_export" Background="Purple" Foreground="White" Click="btn_export_Click">Exporteren</Button>
             <Button FontSize="20" Margin="0,0,0,10" Height="60" x:Name="btn_stuurmentor" Background="Purple" Foreground="White" Click="btn_stuurmentor_Click">Doorsturen naar mentor</Button>
-            <Button FontSize="20" Margin="0,0,0,10" Height="60" x:Name="btn_skip" Background="Purple" Foreground="White">Overslaan</Button>
+            <Button FontSize="20" Margin="0,0,0,10" Height="60" x:Name="btn_skip" Background="Purple" Foreground="White" Click="btn_skip_Click">Overslaan</Button>
         </StackPanel>
     </Grid>
 </Window>

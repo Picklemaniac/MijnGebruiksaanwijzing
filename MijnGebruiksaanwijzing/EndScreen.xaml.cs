@@ -17,6 +17,7 @@ using System.IO;
 using System.Xml;
 using System.Net.Mail;
 using Renci.SshNet.Messages;
+using System.Xml.Linq;
 
 namespace MijnGebruiksaanwijzing
 {
@@ -28,19 +29,18 @@ namespace MijnGebruiksaanwijzing
         string StudentEmail;
         string MentorEmail;
         string documentName = "";
+        int exported;
 
         public EndScreen(string mEmail, string sEmail)
         {
             InitializeComponent();
             StudentEmail = sEmail;
             MentorEmail = mEmail;
+            exported = 0;
         }
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
         }
 
         private void btn_export_Click(object sender, RoutedEventArgs e)
@@ -148,6 +148,8 @@ namespace MijnGebruiksaanwijzing
                     }
                 }
             }
+            exported = 1;
+            MessageBox.Show("Succesvol geexporteerd naar uw bureaublad");
         }
 
         private void SendEmail()
@@ -202,9 +204,59 @@ namespace MijnGebruiksaanwijzing
             }
         }
 
+        private void BackToHome()
+        {
+            if (exported != 1)
+            {
+                MessageBoxResult r = MessageBox.Show("U heeft de resultaten nog niet geexporteerd. Als u terug gaat naar het hoofd menu moet u het spel opnieuw spelen. Weet u zeker dat u dit wilt doen?", "Terug naar het hoofd menu,",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+                if (r == MessageBoxResult.Yes)
+                {
+                    ResetGame();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    // Doe hier niks!
+                }
+            }
+            else
+            {
+                ResetGame();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+        }
+
+        private void ResetGame()
+        {
+            File.Delete(@"..\..\XML\Game.xml");
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = "\t";
+
+
+            XmlWriter writer = XmlWriter.Create(@"..\..\XML\Game.xml", settings);
+            writer.WriteStartDocument();
+            writer.WriteStartElement("Game");
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Dispose();
+        }
+
         private void btn_stuurmentor_Click(object sender, RoutedEventArgs e)
         {
             SendEmail();
+        }
+
+        private void btn_skip_Click(object sender, RoutedEventArgs e)
+        {
+            BackToHome();
         }
     }
 }
