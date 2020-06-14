@@ -28,14 +28,16 @@ namespace MijnGebruiksaanwijzing
     {
         string StudentEmail;
         string MentorEmail;
+        string categorie;
         string documentName = "";
         int exported;
 
-        public EndScreen(string mEmail, string sEmail)
+        public EndScreen(string Categorie, string mEmail, string sEmail)
         {
             InitializeComponent();
             StudentEmail = sEmail;
             MentorEmail = mEmail;
+            categorie = Categorie;
             exported = 0;
         }
 
@@ -51,7 +53,7 @@ namespace MijnGebruiksaanwijzing
         private void doWork()
         {
             XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(@"..\..\XML\Game.xml");
+            xmldoc.Load(@"..\..\XML\" + categorie  + ".xml");
 
             //Sample XML
             var xml = xmldoc;
@@ -149,7 +151,7 @@ namespace MijnGebruiksaanwijzing
                 }
             }
             exported = 1;
-            MessageBox.Show("Succesvol geexporteerd naar uw bureaublad");
+            MessageBox.Show("Succesvol geëxporteerd naar uw bureaublad");
         }
 
         private void SendEmail()
@@ -199,8 +201,7 @@ namespace MijnGebruiksaanwijzing
             }
             catch (Exception)
             {
-                MessageBox.Show("Momenteel kunnen er maar een gelimiteerd aantal emails per 30 minuten verzonden worden. Sorry voor het ongemak.");
-                throw;
+                MessageBox.Show("Momenteel kunnen er maar een gelimiteerd aantal emails per 30 minuten verzonden worden. Sorry voor het ongemak.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
@@ -219,10 +220,6 @@ namespace MijnGebruiksaanwijzing
                     mainWindow.Show();
                     this.Close();
                 }
-                else
-                {
-                    // Doe hier niks!
-                }
             }
             else
             {
@@ -235,13 +232,13 @@ namespace MijnGebruiksaanwijzing
 
         private void ResetGame()
         {
-            File.Delete(@"..\..\XML\Game.xml");
+            File.Delete(@"..\..\XML\" + categorie  + ".xml");
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.IndentChars = "\t";
 
 
-            XmlWriter writer = XmlWriter.Create(@"..\..\XML\Game.xml", settings);
+            XmlWriter writer = XmlWriter.Create(@"..\..\XML\" + categorie + ".xml", settings);
             writer.WriteStartDocument();
             writer.WriteStartElement("Game");
             writer.WriteEndElement();

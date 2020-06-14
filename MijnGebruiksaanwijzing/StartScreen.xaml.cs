@@ -34,9 +34,16 @@ namespace MijnGebruiksaanwijzing
 
         private void Choose_Gamemode(object sender, RoutedEventArgs e)
         {
-            var newScreen = new GameScreen(((Button)sender).Tag.ToString(), mEmail, sEmail);
-            newScreen.Show();
-            this.Close();
+            try
+            {
+                var newScreen = new GameScreen(((Button)sender).Tag.ToString(), mEmail, sEmail);
+                newScreen.Show();
+                this.Close();
+            }
+            catch 
+            {
+                this.Close();
+            }
         }
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)

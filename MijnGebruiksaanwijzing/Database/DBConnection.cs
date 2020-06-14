@@ -5,12 +5,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace MijnGebruiksaanwijzing.Database
 {
     class DBConnection
     {
         MySqlConnection _conn;
+        List<string> previousCards = new List<string>();
+
         public DBConnection()
         {
             string connectie = "Server=localhost;Database=Cards;Uid=root;Pwd=;";
@@ -19,11 +22,32 @@ namespace MijnGebruiksaanwijzing.Database
 
         public DataView GetCards(string categorie)
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"..\..\XML\" + categorie + ".xml");
+
+            foreach (XmlNode CD in doc.SelectSingleNode("Game").SelectNodes("Cards"))
+            {
+                foreach (XmlNode node in CD.ChildNodes)
+                {
+                    if (node.Name == "RedCard")
+                    {
+                        previousCards.Add(node.Attributes[0].InnerText);
+                    }
+                }
+            }
+
             _conn.Open();
 
             MySqlCommand command = _conn.CreateCommand();
 
-            command.CommandText = "SELECT * FROM cards WHERE Categorie = @categorie";
+            string commandText = "SELECT * FROM cards WHERE Categorie = @categorie";
+
+            foreach(string ID in previousCards)
+            {
+                commandText += " AND id !=" + ID;
+            }
+
+            command.CommandText = commandText;
             command.Parameters.AddWithValue("@categorie", categorie);
 
             MySqlDataReader reader = command.ExecuteReader();

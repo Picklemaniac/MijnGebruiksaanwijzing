@@ -26,8 +26,8 @@ namespace MijnGebruiksaanwijzing
     {
         DBConnection conn = new DBConnection();
 
-        List<red_Card> Rood_Selected = new List<red_Card>();
-        List<string> Geel_Selected = new List<string>();
+        List<RedCard> Rood_Selected = new List<RedCard>();
+        List<string> Geel_Selected  = new List<string>();
         List<string> Blauw_Selected = new List<string>();
 
         List<Canvas> CardListRed    = new List<Canvas>();
@@ -69,7 +69,8 @@ namespace MijnGebruiksaanwijzing
                 {
                     GetSelected();
                     WriteToXML();
-                    var newScreen = new EndScreen(mEmail, sEmail);
+
+                    var newScreen = new EndScreen(Categorie, mEmail, sEmail);
                     newScreen.Show();
                     this.Close();
                 }
@@ -78,8 +79,8 @@ namespace MijnGebruiksaanwijzing
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
         {
-            var HomeScreen = new MainWindow();
-            HomeScreen.Show();
+            var StartScreen = new StartScreen(mEmail, sEmail);
+            StartScreen.Show();
             this.Close();
         }
 
@@ -92,7 +93,7 @@ namespace MijnGebruiksaanwijzing
                 imageCanvas.Height = 150;
 
                 Image Image = new Image();
-                Image.Source = new BitmapImage(new Uri("IMG/school/School_" + row[2].ToString() + ".png", UriKind.RelativeOrAbsolute));
+                Image.Source = new BitmapImage(new Uri("IMG/" + Categorie.ToLower() + "/" + Categorie + "_" + row[2].ToString() + ".png", UriKind.RelativeOrAbsolute));
                 Image.Width = 150;
                 Image.Height = 150;
                 Image.Stretch = Stretch.Fill;
@@ -120,19 +121,28 @@ namespace MijnGebruiksaanwijzing
                 {
                     CardListBlue.Add(imageCanvas);
                 }
-
             }
 
-            DataContext = CardListRed;
-            //Rood_Cards.ItemsSource = CardListRed;
-            Geel_Cards.ItemsSource = CardListYellow;
-            Blauw_Cards.ItemsSource = CardListBlue;
+            if (CardListRed.Count == 0)
+            {
+                MessageBox.Show("U heeft het " + Categorie + " spel uitgespeeld." + Environment.NewLine + "U word naar het eind scherm gebracht.", "klaar", MessageBoxButton.OK);
+
+                var newScreen = new EndScreen(Categorie, mEmail, sEmail);
+                newScreen.Show();
+                this.Close();
+            }
+            else
+            {
+                Rood_Cards.ItemsSource = CardListRed;
+                Geel_Cards.ItemsSource = CardListYellow;
+                Blauw_Cards.ItemsSource = CardListBlue;
+            }
         }
 
         public void GetSelected()
         {
             TextBlock red_Textblock = ((TextBlock)((Canvas)Rood_Cards.SelectedItem).Children[1]);
-            Rood_Selected.Add(new red_Card { ID = red_Textblock.Tag.ToString(), Text = red_Textblock.Text });
+            Rood_Selected.Add(new RedCard { ID = red_Textblock.Tag.ToString(), Text = red_Textblock.Text });
 
             foreach (Canvas item in Geel_Cards.SelectedItems)
             {
@@ -147,7 +157,7 @@ namespace MijnGebruiksaanwijzing
         public void WriteToXML()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"..\..\XML\Game.xml");
+            doc.Load(@"..\..\XML\" + Categorie + ".xml");
             XmlElement Cards = doc.CreateElement("Cards");
 
             XmlElement RedCard = doc.CreateElement("RedCard");
@@ -178,7 +188,7 @@ namespace MijnGebruiksaanwijzing
 
             doc.DocumentElement.AppendChild(Cards);
 
-            doc.Save(@"..\..\XML\Game.xml");
+            doc.Save(@"..\..\XML\" + Categorie + ".xml");
         }
 
         public void EndTurn()
@@ -187,15 +197,26 @@ namespace MijnGebruiksaanwijzing
             Geel_Selected.Clear();
             Blauw_Selected.Clear();
 
-            CardListRed.Remove(((Canvas)Rood_Cards.SelectedItem));
+            CardListRed.Remove((Canvas)Rood_Cards.SelectedItem);
+            Rood_Cards.ItemsSource = null;
+            Rood_Cards.ItemsSource = CardListRed;
 
             Rood_Cards.SelectedItem = null;
             Geel_Cards.SelectedItem = null;
             Blauw_Cards.SelectedItem = null;
             txt_opmerking.Text = "";
+
+            if (CardListRed.Count == 0)
+            {
+                MessageBox.Show("U heeft het " + Categorie + " spel uitgespeeld." + Environment.NewLine + "U word naar het eind scherm gebracht.", "klaar", MessageBoxButton.OK);
+
+                var newScreen = new EndScreen(Categorie, mEmail, sEmail);
+                newScreen.Show();
+                this.Close();
+            }
         }
 
-        class red_Card
+        class RedCard
         {
             public string ID { get; set; }
             public string Text { get; set; }
