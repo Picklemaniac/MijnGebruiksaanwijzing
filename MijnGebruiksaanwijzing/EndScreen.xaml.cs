@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Xml;
 using System.Net.Mail;
-using Renci.SshNet.Messages;
-using System.Xml.Linq;
 
 namespace MijnGebruiksaanwijzing
 {
@@ -41,8 +30,9 @@ namespace MijnGebruiksaanwijzing
             exported = 0;
         }
 
-        private void btn_terug_Click(object sender, RoutedEventArgs e)
+        private void btn_hoofdmenu_Click(object sender, RoutedEventArgs e)
         {
+            ToStartScreen();
         }
 
         private void btn_export_Click(object sender, RoutedEventArgs e)
@@ -50,10 +40,27 @@ namespace MijnGebruiksaanwijzing
             doWork();
         }
 
+        private void btn_stuurmentor_Click(object sender, RoutedEventArgs e)
+        {
+            SendEmail();
+        }
+
+        private void btn_skip_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGame();
+        }
+
+        private void ToStartScreen()
+        {
+            StartScreen screen = new StartScreen(MentorEmail, StudentEmail);
+            screen.Show();
+            this.Close();
+        }
+
         private void doWork()
         {
             XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(@"..\..\XML\" + categorie  + ".xml");
+            xmldoc.Load(@"..\..\XML\" + categorie + ".xml");
 
             //Sample XML
             var xml = xmldoc;
@@ -70,25 +77,28 @@ namespace MijnGebruiksaanwijzing
                 {
                     using (var writer = PdfWriter.GetInstance(doc, fs))
                     {
+                        doc.SetPageSize(PageSize.A4.Rotate());
                         doc.Open();
 
                         var t = new PdfPTable(4);
 
+                        t.WidthPercentage = 100; //table width to 100per
+
                         //Flag that the first row should be repeated on each page break
                         t.HeaderRows = 1;
 
-                        BaseColor redtxtColor    = new BaseColor(255, 144, 150);
+                        BaseColor redtxtColor = new BaseColor(255, 144, 150);
                         BaseColor yellowtxtColor = new BaseColor(250, 220, 60);
-                        BaseColor bluetxtColor   = new BaseColor(140, 170, 255);
-                        BaseColor opmtxtColor    = new BaseColor(175, 230, 230);
+                        BaseColor bluetxtColor = new BaseColor(140, 170, 255);
+                        BaseColor opmtxtColor = new BaseColor(175, 230, 230);
                         BaseColor normaltxtColor = new BaseColor(0, 0, 0);
 
                         BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
 
-                        Font redHelvetica    = new Font(bfTimes, 12, Font.BOLD, redtxtColor);
+                        Font redHelvetica = new Font(bfTimes, 12, Font.BOLD, redtxtColor);
                         Font yellowHelvetica = new Font(bfTimes, 12, Font.BOLD, yellowtxtColor);
-                        Font blueHelvetica   = new Font(bfTimes, 12, Font.BOLD, bluetxtColor);
-                        Font opmHelvetica    = new Font(bfTimes, 12, Font.BOLD, opmtxtColor);
+                        Font blueHelvetica = new Font(bfTimes, 12, Font.BOLD, bluetxtColor);
+                        Font opmHelvetica = new Font(bfTimes, 12, Font.BOLD, opmtxtColor);
                         Font normalHelvetica = new Font(bfTimes, 12, Font.NORMAL, normaltxtColor);
 
                         t.AddCell(new Phrase("Belemmering", redHelvetica));
@@ -111,23 +121,30 @@ namespace MijnGebruiksaanwijzing
                             //Loop through each child of the current CD. Limit the number of children to our initial count just in case there are extra nodes.
                             foreach (XmlNode node in CD.ChildNodes)
                             {
-                                Cards[node.Name] += node.InnerText + System.Environment.NewLine;
+                                if (node.Name == "YellowCard" || node.Name == "BlueCard")
+                                {
+                                    Cards[node.Name] += " - " + node.InnerText + System.Environment.NewLine;
+                                }
+                                else
+                                {
+                                    Cards[node.Name] += node.InnerText + System.Environment.NewLine;
+                                }
                             }
 
-                            BaseColor redColor    = new BaseColor(255, 195, 195);
+                            BaseColor redColor = new BaseColor(255, 195, 195);
                             BaseColor yellowColor = new BaseColor(255, 255, 195);
-                            BaseColor blueColor   = new BaseColor(195, 210, 255);
-                            BaseColor opmColor    = new BaseColor(195, 255, 255);
+                            BaseColor blueColor = new BaseColor(195, 210, 255);
+                            BaseColor opmColor = new BaseColor(195, 255, 255);
 
-                            PdfPCell redCell    = new PdfPCell();
+                            PdfPCell redCell = new PdfPCell();
                             PdfPCell yellowCell = new PdfPCell();
-                            PdfPCell blueCell   = new PdfPCell();
-                            PdfPCell opmCell    = new PdfPCell();
+                            PdfPCell blueCell = new PdfPCell();
+                            PdfPCell opmCell = new PdfPCell();
 
-                            redCell.BackgroundColor    = redColor;
+                            redCell.BackgroundColor = redColor;
                             yellowCell.BackgroundColor = yellowColor;
-                            blueCell.BackgroundColor   = blueColor;
-                            opmCell.BackgroundColor    = opmColor;
+                            blueCell.BackgroundColor = blueColor;
+                            opmCell.BackgroundColor = opmColor;
 
                             redCell.AddElement(new Phrase(Cards["RedCard"], normalHelvetica));
                             yellowCell.AddElement(new Phrase(Cards["YellowCard"], normalHelvetica));
@@ -151,7 +168,7 @@ namespace MijnGebruiksaanwijzing
                 }
             }
             exported = 1;
-            MessageBox.Show("Succesvol geëxporteerd naar uw bureaublad");
+            MessageBox.Show("Het PDF bestand is succesvol geëxporteerd naar uw bureaublad.");
         }
 
         private void SendEmail()
@@ -173,9 +190,11 @@ namespace MijnGebruiksaanwijzing
 
                     StringBuilder sbBody = new StringBuilder();
 
-                    sbBody.AppendLine("Beste Heer / Mevrouw,");
-                    sbBody.AppendLine("Hierbij de resultaten van Mijn Gebruiksaanwijzing");
-                    sbBody.AppendLine("Deze resultaten zijn verzonden door: " + StudentEmail);
+                    sbBody.AppendLine("Beste Heer/Mevrouw,");
+                    sbBody.AppendLine("");
+                    sbBody.AppendLine("Hierbij de resultaten van Mijn Gebruiksaanwijzing.");
+                    sbBody.AppendLine("Deze resultaten zijn verzonden door: " + StudentEmail + ".");
+                    sbBody.AppendLine("");
                     sbBody.AppendLine("Met vriendelijke groet,");
                     sbBody.AppendLine("Mijn Gebruiksaanwijzing");
 
@@ -192,7 +211,7 @@ namespace MijnGebruiksaanwijzing
 
 
                     SmtpServer.Send(mail);
-                    MessageBox.Show("De email is verzonden naar uw mentor");
+                    MessageBox.Show("De email is verzonden naar uw mentor.");
                 }
                 else
                 {
@@ -201,42 +220,37 @@ namespace MijnGebruiksaanwijzing
             }
             catch (Exception)
             {
-                MessageBox.Show("Momenteel kunnen er maar een gelimiteerd aantal emails per 30 minuten verzonden worden. Sorry voor het ongemak.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
-
-        private void BackToHome()
-        {
-            if (exported != 1)
-            {
-                MessageBoxResult r = MessageBox.Show("U heeft de resultaten nog niet geexporteerd. Als u terug gaat naar het hoofd menu moet u het spel opnieuw spelen. Weet u zeker dat u dit wilt doen?", "Terug naar het hoofd menu,",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-
-                if (r == MessageBoxResult.Yes)
-                {
-                    ResetGame();
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
-                }
-            }
-            else
-            {
-                ResetGame();
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
+                MessageBox.Show("Momenteel kunnen er maar een beperkt aantal emails per 30 minuten verzonden worden." + Environment.NewLine + " Sorry voor het ongemak.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
         private void ResetGame()
         {
-            File.Delete(@"..\..\XML\" + categorie  + ".xml");
+            if (exported != 1)
+            {
+                MessageBoxResult r = MessageBox.Show("U heeft de resultaten nog niet geëxporteerd. " + Environment.NewLine + " Weet u zeker dat u het spel opnieuw wilt beginnen?", "Spel ressetten",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+                if (r == MessageBoxResult.Yes)
+                {
+                    ResetXML();
+                    ToStartScreen();
+                }
+            }
+            else
+            {
+                ResetXML();
+                ToStartScreen();
+            }
+        }
+
+        private void ResetXML()
+        {
+            File.Delete(@"..\..\XML\" + categorie + ".xml");
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.IndentChars = "\t";
-
 
             XmlWriter writer = XmlWriter.Create(@"..\..\XML\" + categorie + ".xml", settings);
             writer.WriteStartDocument();
@@ -244,16 +258,8 @@ namespace MijnGebruiksaanwijzing
             writer.WriteEndElement();
             writer.WriteEndDocument();
             writer.Dispose();
-        }
 
-        private void btn_stuurmentor_Click(object sender, RoutedEventArgs e)
-        {
-            SendEmail();
-        }
-
-        private void btn_skip_Click(object sender, RoutedEventArgs e)
-        {
-            BackToHome();
+            MessageBox.Show("Het spel is gereset. U kan het weer opnieuw spelen.", "Klaar");
         }
     }
 }

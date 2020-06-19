@@ -1,24 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Game>
-  <Cards>
-    <RedCard ID="1">Ik word heel erg snel boos</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
-</YellowCard>
-    <YellowCard>Ik gebruik een boksbal.
-</YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
-    <BlueCard>Ikzelf
-</BlueCard>
-  </Cards>
-  <Cards>
-    <RedCard ID="2">Ik raak snel het overzicht kwijt bij huiswerk.
-</RedCard>
-    <YellowCard>Ik vraag om een rustige studieruimte.
-</YellowCard>
-    <YellowCard>Ik gebruik een boksbal.
-</YellowCard>
-    <BlueCard>Psycholoog
-</BlueCard>
-  </Cards>
-</Game>
+<Game />

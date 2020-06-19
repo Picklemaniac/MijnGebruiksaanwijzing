@@ -1,20 +1,11 @@
-﻿using iTextSharp.xmp.impl;
-using Microsoft.SqlServer.Server;
-using MijnGebruiksaanwijzing.Database;
+﻿using MijnGebruiksaanwijzing.Database;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml;
 
 namespace MijnGebruiksaanwijzing
@@ -27,12 +18,12 @@ namespace MijnGebruiksaanwijzing
         DBConnection conn = new DBConnection();
 
         List<RedCard> Rood_Selected = new List<RedCard>();
-        List<string> Geel_Selected  = new List<string>();
+        List<string> Geel_Selected = new List<string>();
         List<string> Blauw_Selected = new List<string>();
 
-        List<Canvas> CardListRed    = new List<Canvas>();
+        List<Canvas> CardListRed = new List<Canvas>();
         List<Canvas> CardListYellow = new List<Canvas>();
-        List<Canvas> CardListBlue   = new List<Canvas>();
+        List<Canvas> CardListBlue = new List<Canvas>();
 
         string Categorie;
         string mEmail;
@@ -41,40 +32,12 @@ namespace MijnGebruiksaanwijzing
         public GameScreen(string categorie, string mentorEmail, string studentEmail)
         {
             InitializeComponent();
+
             Categorie = categorie;
             mEmail = mentorEmail;
             sEmail = studentEmail;
+
             ShowCards();
-        }
-
-        private void Volgende_Click(object sender, RoutedEventArgs e)
-        {
-            if (Rood_Cards.SelectedItems.Count == 0 || Geel_Cards.SelectedItems.Count == 0 || Blauw_Cards.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("U heeft niet alles gekozen.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                MessageBoxResult r = MessageBox.Show("Wilt u meer kaarten selecteren?", "Nog een keer?",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-
-                if (r == MessageBoxResult.Yes)
-                {
-                    GetSelected();
-                    WriteToXML();
-                    EndTurn();
-                }
-                else
-                {
-                    GetSelected();
-                    WriteToXML();
-
-                    var newScreen = new EndScreen(Categorie, mEmail, sEmail);
-                    newScreen.Show();
-                    this.Close();
-                }
-            }
         }
 
         private void btn_terug_Click(object sender, RoutedEventArgs e)
@@ -84,58 +47,114 @@ namespace MijnGebruiksaanwijzing
             this.Close();
         }
 
-        private void ShowCards()
+        private void Volgende_Click(object sender, RoutedEventArgs e)
         {
-            foreach (DataRowView row in conn.GetCards(Categorie))
+            if (Rood_Cards.SelectedItems.Count == 0 || Geel_Cards.SelectedItems.Count == 0 || Blauw_Cards.SelectedItems.Count == 0)
             {
-                Canvas imageCanvas = new Canvas();
-                imageCanvas.Width = 150;
-                imageCanvas.Height = 150;
-
-                Image Image = new Image();
-                Image.Source = new BitmapImage(new Uri("IMG/" + Categorie.ToLower() + "/" + Categorie + "_" + row[2].ToString() + ".png", UriKind.RelativeOrAbsolute));
-                Image.Width = 150;
-                Image.Height = 150;
-                Image.Stretch = Stretch.Fill;
-                imageCanvas.Children.Add(Image);
-
-                TextBlock textBlock = new TextBlock();
-                textBlock.Height = 110;
-                textBlock.Width = 110;
-                textBlock.Tag = row[0].ToString();
-                textBlock.TextAlignment = TextAlignment.Center;
-                textBlock.TextWrapping = TextWrapping.Wrap;
-                textBlock.Text = row[3].ToString();
-                textBlock.Margin = new Thickness(20, 25, 0, 0);
-                imageCanvas.Children.Add(textBlock);
-
-                if (row[2].ToString() == "rood")
-                {
-                    CardListRed.Add(imageCanvas);
-                }
-                else if (row[2].ToString() == "geel")
-                {
-                    CardListYellow.Add(imageCanvas);
-                }
-                else if (row[2].ToString() == "blauw")
-                {
-                    CardListBlue.Add(imageCanvas);
-                }
-            }
-
-            if (CardListRed.Count == 0)
-            {
-                MessageBox.Show("U heeft het " + Categorie + " spel uitgespeeld." + Environment.NewLine + "U word naar het eind scherm gebracht.", "klaar", MessageBoxButton.OK);
-
-                var newScreen = new EndScreen(Categorie, mEmail, sEmail);
-                newScreen.Show();
-                this.Close();
+                MessageBox.Show("U heeft geen geldige combinatie gemaakt.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
-                Rood_Cards.ItemsSource = CardListRed;
-                Geel_Cards.ItemsSource = CardListYellow;
-                Blauw_Cards.ItemsSource = CardListBlue;
+                GetSelected();
+                WriteToXML();
+                EndTurn();
+            }
+        }
+
+        private void End_Click(object sender, RoutedEventArgs e)
+        {
+
+            MessageBoxResult r = MessageBox.Show("Wilt u de geselecteerde kaarten opslaan?", "Opslaan?",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+            if (r == MessageBoxResult.Yes)
+            {
+                if (Rood_Cards.SelectedItems.Count == 0 || Geel_Cards.SelectedItems.Count == 0 || Blauw_Cards.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("U heeft geen geldige combinatie gemaakt.", "Fout", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    GetSelected();
+                    WriteToXML();
+
+                    ToEndScreen();
+                }
+            }
+            else
+            {
+                ToEndScreen();
+            }
+        }
+
+        private void ToEndScreen()
+        {
+            EndScreen Screen = new EndScreen(Categorie, mEmail, sEmail);
+            Screen.Show();
+            this.Close();
+        }
+
+        private void ShowCards()
+        {
+            try
+            {
+                foreach (DataRowView row in conn.GetCards(Categorie))
+                {
+                    Canvas imageCanvas = new Canvas();
+                    imageCanvas.Width = 150;
+                    imageCanvas.Height = 150;
+
+                    Image Image = new Image();
+                    Image.Source = new BitmapImage(new Uri("IMG/" + Categorie.ToLower() + "/" + Categorie + "_" + row[2].ToString() + ".png", UriKind.RelativeOrAbsolute));
+                    Image.Width = 150;
+                    Image.Height = 150;
+                    Image.Stretch = Stretch.Fill;
+                    imageCanvas.Children.Add(Image);
+
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Height = 110;
+                    textBlock.Width = 110;
+                    textBlock.Tag = row[0].ToString();
+                    textBlock.TextAlignment = TextAlignment.Center;
+                    textBlock.TextWrapping = TextWrapping.Wrap;
+                    textBlock.Text = row[3].ToString();
+                    textBlock.Margin = new Thickness(20, 25, 0, 0);
+                    imageCanvas.Children.Add(textBlock);
+
+                    if (row[2].ToString() == "rood")
+                    {
+                        CardListRed.Add(imageCanvas);
+                    }
+                    else if (row[2].ToString() == "geel")
+                    {
+                        CardListYellow.Add(imageCanvas);
+                    }
+                    else if (row[2].ToString() == "blauw")
+                    {
+                        CardListBlue.Add(imageCanvas);
+                    }
+                }
+
+                if (CardListRed.Count == 0)
+                {
+                    MessageBox.Show("U heeft het " + Categorie + " spel uitgespeeld." + Environment.NewLine + "U word naar het eind scherm gebracht.", "uitgespeeld", MessageBoxButton.OK);
+
+                    ToEndScreen();
+                }
+                else
+                {
+                    Rood_Cards.ItemsSource = CardListRed;
+                    Geel_Cards.ItemsSource = CardListYellow;
+                    Blauw_Cards.ItemsSource = CardListBlue;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Er is een probleem opgetreden met het inladen van de applicatie." + Environment.NewLine + "U word naar het start scherm gebracht.", "fout", MessageBoxButton.OK);
+                StartScreen screen = new StartScreen(mEmail, sEmail);
+                screen.Show();
+                this.Close();
             }
         }
 
@@ -208,11 +227,9 @@ namespace MijnGebruiksaanwijzing
 
             if (CardListRed.Count == 0)
             {
-                MessageBox.Show("U heeft het " + Categorie + " spel uitgespeeld." + Environment.NewLine + "U word naar het eind scherm gebracht.", "klaar", MessageBoxButton.OK);
+                MessageBox.Show("U heeft het " + Categorie + " spel uitgespeeld." + Environment.NewLine + "U word naar het eind scherm gebracht.", "uitgespeeld", MessageBoxButton.OK);
 
-                var newScreen = new EndScreen(Categorie, mEmail, sEmail);
-                newScreen.Show();
-                this.Close();
+                ToEndScreen();
             }
         }
 
